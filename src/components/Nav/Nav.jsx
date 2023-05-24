@@ -11,11 +11,15 @@ IMPORTANTE
 */
 
 import './nav.css';
-
+import {Link} from 'react-router-dom'
 import React from 'react';
+import {ROUTES} from '../../routes'
 
 const Nav = () => {
-   return <div className='nav'></div>;
+   return <div className='nav'>
+      <Link to={ROUTES.home}>Home</Link>
+      <Link to={ROUTES.createFutbolista}>Create Futbolista</Link>
+   </div>;
 };
 
 export default Nav;
