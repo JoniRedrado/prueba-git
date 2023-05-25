@@ -2,6 +2,8 @@
 
 /* Importa las action-types aquí. */
 
+import {GET_ALL_FUTBOLISTAS,GET_FUTBOLISTAS_DETAIL,CREATE_FUTBOLISTA,DELETE_FUTBOLISTA} from '../actions/index'
+
 const initialState = {
    futbolistas: [],
    futbolistaDetail: {},
@@ -25,10 +27,22 @@ REQUISITOS:
 */
 
 const rootReducer = (state = initialState, action) => {
-   switch (
-      action.type
-      // Acá va tu código:
-   ) {
+   switch (action.type) {  // Acá va tu código:
+   
+      case GET_ALL_FUTBOLISTAS:
+         return {...state,futbolistas: action.payload}
+      
+      case GET_FUTBOLISTAS_DETAIL:
+         return {...state,futbolistaDetail: action.payload}
+
+      case CREATE_FUTBOLISTA:
+         return {...state, futbolistas: [...state.futbolistas,action.payload] }
+      
+      case DELETE_FUTBOLISTA:
+         return {...state, futbolistas: state.futbolistas.filter((futbolista) => {return futbolista.id !== action.payload})}
+
+      default:
+         return state
    }
 };
 
