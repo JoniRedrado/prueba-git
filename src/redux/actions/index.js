@@ -17,7 +17,7 @@ export const getAllFutbolistas = () => {
     return async function (dispatch) {
     await axios('http://localhost:3001/futbolistas')
         .then(({ data }) => {
-          dispatch({type: GET_ALL_FUTBOLISTAS, payload: data})
+            dispatch({type: GET_ALL_FUTBOLISTAS, payload: data})
         }) 
     }
 };
@@ -30,7 +30,7 @@ export const getFutbolistasDetails = (id) => {
     return async function (dispatch) {
         await axios(`http://localhost:3001/futbolistas/${id}`)
             .then(({ data }) => {
-              dispatch({type: GET_FUTBOLISTAS_DETAIL, payload: data})
+                dispatch({type: GET_FUTBOLISTAS_DETAIL, payload: data})
             }) 
         }
 };

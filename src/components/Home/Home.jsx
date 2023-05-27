@@ -19,20 +19,57 @@ IMPORTANTE
 
 */
 
-import './home.css';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import * as actions from "../../redux/actions/index";
 
+import "./home.css";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import FutbolistaCard from "../FutbolistaCard/FutbolistaCard";
+import img from "../../img-cp2/main-image-cp2.jpg";
 export class Home extends Component {
-   componentDidMount() {}
 
-   render() {
-      return <div className='home'></div>;
+   componentDidMount() {
+      this.props.getAllFutbolistas();
    }
-}
+   
+   render() {
+      return (
+         <div className="home">
+         <h1>Mundial Qatar</h1>
+         <img src={img} alt="mundial-logo" />
+         <h3>Futbolistas:</h3>
+         {this.props.futbolistas ? 
+            this.props.futbolistas.map((futbolista) => {
+            return (
+               <FutbolistaCard
+               id={futbolista.id}
+               name={futbolista.name}
+               pais={futbolista.pais}
+               imagen={futbolista.imagen}
+               key={futbolista.id}
+               />
+            );
+         }) : <h3>Loading...</h3>}
+         <h4>Checkpoint M2</h4>
+         </div>
+      );
+   }
+   }
 
-export const mapStateToProps = undefined;
+   export const mapStateToProps = (state) => {
+      return {
+         futbolistas: state.futbolistas,
+      };
+   };
 
-export const mapDispatchToProps = undefined;
+
+   export const mapDispatchToProps = (dispatch) => {
+   return {
+      getAllFutbolistas: () => {
+         dispatch(actions.getAllFutbolistas());
+      },
+   };
+   };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

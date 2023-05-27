@@ -15,7 +15,7 @@ import './futbolistaCard.css';
 import React from 'react';
 
 const FutbolistaCard = (props) => {
-   return <div className='card'></div>;
+   return <div className='card'>{props.name}</div>;
 };
 
 export default FutbolistaCard;
