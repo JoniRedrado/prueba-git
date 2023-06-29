@@ -17,12 +17,31 @@ IMPORTANTE
       -'React.useState' - 'React.useEffect';
 */
 import "./FutbolistaDetail.css"
-
+import * as actions from '../../redux/actions/index'
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+
 
 const FutbolistaDetail = (props) => {
+      const dispatch = useDispatch();
+      const futbolistaDetail = useSelector((state)=> state.futbolistaDetail);
+      const {id} = useParams();
+
+      React.useEffect(()=>{
+            dispatch(actions.getFutbolistasDetails(id));
+      },[]);
+
    return (
    <div className="detail">
+      <h1>{futbolistaDetail.name}</h1>
+      <img src={futbolistaDetail.imagen} alt={futbolistaDetail.name} />
+      <h3>Nacimiento: {futbolistaDetail.nacimiento}</h3>
+      <h5>Pais: {futbolistaDetail.pais}</h5>
+      <h5>Posición: {futbolistaDetail.posición}</h5>
+      <h5>Descripción: {futbolistaDetail.descripción}</h5>
+      <h5>Numero Camiseta: {futbolistaDetail.numeroCamiseta}</h5>
 
    </div>
    )
